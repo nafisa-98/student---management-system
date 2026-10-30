@@ -1,0 +1,315 @@
+/* Responsive layout adjustments */
+@media (min-width: 1600px) {
+  .main-content {
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+  .stats-grid {
+    gap: 19px;
+  }
+  .stat-card {
+    padding: 22px;
+  }
+}
+@media (max-width: 1250px) {
+  .sidebar {
+    width: 220px;
+  }
+  .main-content {
+    margin-left: 220px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .content-grid,
+  .lower-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(255px, 0.9fr);
+  }
+  .performance-panel,
+  .subject-panel,
+  .students-panel,
+  .leaders-panel {
+    padding: 18px;
+  }
+  .student-table th,
+  .student-table td {
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+}
+@media (max-width: 980px) {
+  .sidebar {
+    width: 248px;
+    transform: translateX(-102%);
+    transition: transform 0.25s ease;
+    box-shadow: 15px 0 35px rgba(23, 43, 53, 0.08);
+  }
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 0 25px 20px;
+  }
+  .menu-toggle {
+    display: inline-grid;
+    margin-right: 12px;
+  }
+  .topbar {
+    justify-content: flex-start;
+  }
+  .breadcrumb {
+    flex: 1;
+  }
+  .content-grid,
+  .lower-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .subject-panel {
+    display: block;
+  }
+  .subject-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px 25px;
+  }
+  .subject-footer {
+    margin-top: 19px;
+  }
+  .leader-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .attendance-panel {
+    grid-template-columns: 1fr auto;
+  }
+}
+@media (max-width: 640px) {
+  .main-content {
+    padding: 0 14px 14px;
+  }
+  .topbar {
+    min-height: 63px;
+  }
+  .topbar-actions {
+    gap: 9px;
+  }
+  .date-label {
+    display: none;
+  }
+  .welcome-row {
+    align-items: flex-start;
+    margin: 25px 0 20px;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  .welcome-subtitle {
+    max-width: 260px;
+    font-size: 11px;
+  }
+  .welcome-row .primary-button {
+    min-height: 37px;
+    padding: 0 11px;
+    font-size: 10px;
+  }
+  .stats-grid {
+    gap: 10px;
+  }
+  .stat-card {
+    min-height: 132px;
+    padding: 14px;
+  }
+  .stat-top {
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 10px;
+  }
+  .stat-icon {
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+  }
+  .stat-value {
+    font-size: 27px;
+  }
+  .stat-foot {
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 8px;
+  }
+  .content-grid,
+  .lower-grid {
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .performance-panel,
+  .subject-panel,
+  .students-panel,
+  .leaders-panel {
+    padding: 16px 13px;
+    border-radius: 16px;
+  }
+  .panel-heading h2 {
+    font-size: 16px;
+  }
+  .panel-subtitle {
+    font-size: 9px;
+  }
+  .chart-wrap {
+    height: 190px;
+  }
+  .chart-legend {
+    margin-top: 18px;
+  }
+  .subject-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+    margin-top: 19px;
+  }
+  .students-heading {
+    align-items: flex-start;
+  }
+  .students-heading .outline-button {
+    min-height: 32px;
+    padding: 0 8px;
+  }
+  .students-heading .outline-button i {
+    font-size: 12px;
+  }
+  .students-heading .outline-button {
+    font-size: 0;
+  }
+  .students-heading .outline-button i {
+    font-size: 14px;
+  }
+  .table-controls {
+    align-items: stretch;
+    flex-direction: column;
+    margin-top: 17px;
+  }
+  .search-box {
+    width: 100%;
+    min-height: 38px;
+  }
+  .filter-select,
+  .filter-select select {
+    width: 100%;
+  }
+  .filter-select select {
+    min-height: 36px;
+  }
+  .table-scroll {
+    margin: 0 -13px;
+    padding: 0 13px;
+  }
+  .student-table {
+    min-width: 690px;
+  }
+  .table-footer {
+    font-size: 8px;
+  }
+  .leader-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+    margin-top: 19px;
+  }
+  .attendance-panel {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    padding: 16px 14px;
+  }
+  .attendance-metrics {
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .attendance-metrics strong {
+    font-size: 18px;
+  }
+  .attendance-bar {
+    grid-column: auto;
+  }
+  .app-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    padding-top: 17px;
+  }
+  .modal-backdrop {
+    padding: 10px;
+  }
+  .modal-card {
+    max-height: 94vh;
+    padding: 19px 15px;
+    border-radius: 17px;
+  }
+  .modal-header h2 {
+    font-size: 19px;
+  }
+  .form-grid {
+    gap: 13px 9px;
+  }
+  .form-field {
+    font-size: 9px;
+  }
+  .form-field input,
+  .form-field select {
+    min-height: 38px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+  .grade-input-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 11px;
+  }
+  .detail-hero {
+    flex-wrap: wrap;
+  }
+  .detail-grade {
+    margin-left: auto;
+  }
+  .detail-stats {
+    gap: 6px;
+  }
+  .detail-stat {
+    padding: 10px 8px;
+  }
+  .detail-stat strong {
+    font-size: 15px;
+  }
+  .detail-subject {
+    grid-template-columns: 75px 1fr 30px;
+    gap: 7px;
+  }
+}
+@media (max-width: 390px) {
+  .main-content {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .welcome-row {
+    gap: 8px;
+  }
+  .welcome-row .primary-button {
+    padding: 0 9px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  .stat-card {
+    padding: 11px;
+  }
+  .stat-top {
+    font-size: 9px;
+  }
+  .stat-value {
+    font-size: 25px;
+  }
+  .topbar-actions {
+    gap: 6px;
+  }
+  .avatar {
+    flex-basis: 31px;
+    height: 31px;
+  }
+}

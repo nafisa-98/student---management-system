@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A responsive student management dashboard for tracking grades, attendance, progress, and student records."
+    />
+    <title>StudentFlow | Student Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="StudentFlow home">
+          <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>
+          <span
+            >student<span class="brand-accent">flow</span
+            ><small>LEARNING, IN FOCUS</small></span
+          >
+        </a>
+        <div class="school-switcher">
+          <span class="school-icon"><i class="bi bi-building"></i></span>
+          <span
+            ><strong>Northstar Academy</strong
+            ><small>Academic year 2026–27</small></span
+          >
+          <i class="bi bi-chevron-expand switch-chevron"></i>
+        </div>
+        <p class="nav-label">WORKSPACE</p>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="nav-link active" href="#overview"
+            ><i class="bi bi-grid-1x2-fill"></i> Overview</a
+          >
+          <a class="nav-link" href="#students"
+            ><i class="bi bi-people"></i> Students
+            <span class="nav-count" id="navStudentCount">0</span></a
+          >
+          <a class="nav-link" href="#performance"
+            ><i class="bi bi-graph-up-arrow"></i> Performance</a
+          >
+          <a class="nav-link" href="#leaders"
+            ><i class="bi bi-trophy"></i> Top students</a
+          >
+        </nav>
+        <p class="nav-label tools-label">MANAGEMENT</p>
+        <nav class="main-nav" aria-label="Management navigation">
+          <a class="nav-link" href="#students"
+            ><i class="bi bi-journal-check"></i> Grades & records</a
+          >
+          <a class="nav-link" href="#attendance"
+            ><i class="bi bi-calendar2-check"></i> Attendance</a
+          >
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="help-card">
+            <span class="help-icon"><i class="bi bi-lightbulb"></i></span>
+            <strong>Make progress visible</strong>
+            <p>
+              Small steps lead to big results. Keep every student moving
+              forward.
+            </p>
+            <a href="#performance"
+              >View insights <i class="bi bi-arrow-up-right"></i
+            ></a>
+          </div>
+          <div class="profile-mini">
+            <div class="avatar avatar-teal">AD</div>
+            <div><strong>Alex Morgan</strong><small>Administrator</small></div>
+            <button
+              class="icon-button profile-menu"
+              aria-label="Profile menu"
+              title="Profile"
+            >
+              <i class="bi bi-three-dots"></i>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="overview">
+        <header class="topbar">
+          <button
+            class="icon-button menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="breadcrumb">
+            Workspace <i class="bi bi-chevron-right"></i>
+            <strong>Overview</strong>
+          </div>
+          <div class="topbar-actions">
+            <span class="date-label"
+              ><i class="bi bi-calendar3"></i>
+              <span id="todayLabel">Today</span></span
+            >
+            <button
+              class="icon-button notification-button"
+              id="notificationButton"
+              aria-label="Notifications"
+            >
+              <i class="bi bi-bell"></i><span></span>
+            </button>
+            <div class="avatar avatar-pink">AM</div>
+          </div>
+        </header>
+
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow">
+              <span class="eyebrow-dot"></span> YOUR SCHOOL AT A GLANCE
+            </p>
+            <h1>Good morning, Alex <span class="wave">✦</span></h1>
+            <p class="welcome-subtitle">
+              Here’s what’s happening with your students today.
+            </p>
+          </div>
+          <button class="primary-button" id="addStudentButton">
+            <i class="bi bi-plus-lg"></i> Add student
+          </button>
+        </section>
+
+        <section class="stats-grid" aria-label="School summary">
+          <article class="stat-card stat-lime">
+            <div class="stat-top">
+              <span>Total students</span
+              ><span class="stat-icon"><i class="bi bi-people-fill"></i></span>
+            </div>
+            <div class="stat-value" id="totalStudents">0</div>
+            <div class="stat-foot">
+              <span class="trend trend-up"
+                ><i class="bi bi-arrow-up-right"></i> Active roster</span
+              ><span class="muted">enrolled</span>
+            </div>
+            <div class="stat-decoration decoration-lime"></div>
+          </article>
+          <article class="stat-card stat-teal">
+            <div class="stat-top">
+              <span>Average grade</span
+              ><span class="stat-icon"
+                ><i class="bi bi-bar-chart-fill"></i
+              ></span>
+            </div>
+            <div class="stat-value">
+              <span id="averageGrade">0</span><small>%</small>
+            </div>
+            <div class="stat-foot">
+              <span class="trend trend-up"
+                ><i class="bi bi-graph-up-arrow"></i> Class average</span
+              ><span class="muted">all subjects</span>
+            </div>
+            <div class="stat-decoration decoration-teal"></div>
+          </article>
+          <article class="stat-card stat-pink">
+            <div class="stat-top">
+              <span>Attendance rate</span
+              ><span class="stat-icon"
+                ><i class="bi bi-calendar2-check-fill"></i
+              ></span>
+            </div>
+            <div class="stat-value">
+              <span id="attendanceRate">0</span><small>%</small>
+            </div>
+            <div class="stat-foot">
+              <span class="trend trend-up"
+                ><i class="bi bi-check2-circle"></i> Attendance</span
+              ><span class="muted">overall</span>
+            </div>
+            <div class="stat-decoration decoration-pink"></div>
+          </article>
+          <article class="stat-card stat-blue">
+            <div class="stat-top">
+              <span>Needs support</span
+              ><span class="stat-icon"
+                ><i class="bi bi-heart-pulse-fill"></i
+              ></span>
+            </div>
+            <div class="stat-value" id="needsSupport">0</div>
+            <div class="stat-foot">
+              <span class="trend trend-care"
+                ><i class="bi bi-flag"></i> Below 70%</span
+              ><span class="muted">students</span>
+            </div>
+            <div class="stat-decoration decoration-blue"></div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel performance-panel" id="performance">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">ACADEMIC OVERVIEW</p>
+                <h2>Student performance</h2>
+                <p class="panel-subtitle">
+                  Track how your class is progressing over time.
+                </p>
+              </div>
+              <label class="select-wrap"
+                ><span class="sr-only">Performance chart period</span
+                ><select id="chartPeriod">
+                  <option value="term">This term</option>
+                  <option value="year">This year</option></select
+                ><i class="bi bi-chevron-down"></i
+              ></label>
+            </div>
+            <div class="chart-legend">
+              <span><i class="legend-dot dot-teal"></i> Average score</span
+              ><span><i class="legend-dot dot-pink"></i> Target score</span>
+            </div>
+            <div class="chart-wrap">
+              <canvas
+                id="performanceChart"
+                aria-label="Student performance chart"
+                role="img"
+              ></canvas>
+            </div>
+            <div class="chart-insight">
+              <span class="insight-icon"><i class="bi bi-stars"></i></span>
+              <p>
+                <strong>Keep the momentum going.</strong> Use regular check-ins
+                to help every student reach their potential.
+              </p>
+            </div>
+          </article>
+
+          <article class="panel subject-panel">
+            <div class="panel-heading compact-heading">
+              <div>
+                <p class="section-kicker">SUBJECT BREAKDOWN</p>
+                <h2>Class strengths</h2>
+              </div>
+              <button
+                class="icon-button subtle-button"
+                id="subjectInfo"
+                aria-label="About subject scores"
+                title="About subject scores"
+              >
+                <i class="bi bi-info-circle"></i>
+              </button>
+            </div>
+            <p class="panel-subtitle">Average score by subject.</p>
+            <div class="subject-list" id="subjectList"></div>
+            <div class="subject-footer">
+              <span class="mini-check"><i class="bi bi-check-lg"></i></span
+              ><span
+                ><strong id="strongestSubject">Mathematics</strong
+                ><small>Current strongest subject</small></span
+              ><i class="bi bi-arrow-up-right"></i>
+            </div>
+          </article>
+        </section>
+
+        <section class="lower-grid">
+          <article class="panel students-panel" id="students">
+            <div class="panel-heading students-heading">
+              <div>
+                <p class="section-kicker">STUDENT DIRECTORY</p>
+                <h2>
+                  All students
+                  <span class="heading-count" id="studentHeadingCount">0</span>
+                </h2>
+                <p class="panel-subtitle">
+                  Manage student records, grades, and progress.
+                </p>
+              </div>
+              <button class="outline-button" id="exportButton">
+                <i class="bi bi-download"></i> Export CSV
+              </button>
+            </div>
+            <div class="table-controls">
+              <label class="search-box"
+                ><i class="bi bi-search"></i
+                ><input
+                  type="search"
+                  id="studentSearch"
+                  placeholder="Search by name or ID..."
+                  aria-label="Search students"
+              /></label>
+              <label class="filter-select"
+                ><span class="sr-only">Filter by grade status</span
+                ><select id="gradeFilter">
+                  <option value="all">All performance</option>
+                  <option value="excellent">Excellent (90+)</option>
+                  <option value="good">Good (80–89)</option>
+                  <option value="average">Average (70–79)</option>
+                  <option value="support">
+                    Needs support (below 70)
+                  </option></select
+                ><i class="bi bi-chevron-down"></i
+              ></label>
+            </div>
+            <div class="table-scroll">
+              <table class="student-table">
+                <thead>
+                  <tr>
+                    <th>STUDENT</th>
+                    <th>ID</th>
+                    <th>CLASS</th>
+                    <th>AVERAGE</th>
+                    <th>PROGRESS</th>
+                    <th>STATUS</th>
+                    <th><span class="sr-only">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody"></tbody>
+              </table>
+              <div class="empty-state hidden" id="emptyState">
+                <span><i class="bi bi-search"></i></span
+                ><strong>No students found</strong>
+                <p>Try another search or change your filters.</p>
+              </div>
+            </div>
+            <div class="table-footer">
+              <span id="tableSummary">Showing 0 students</span>
+              <div class="pagination">
+                <button
+                  class="icon-button"
+                  id="prevPage"
+                  aria-label="Previous page"
+                >
+                  <i class="bi bi-chevron-left"></i></button
+                ><span id="pageLabel">1 / 1</span
+                ><button
+                  class="icon-button"
+                  id="nextPage"
+                  aria-label="Next page"
+                >
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel leaders-panel" id="leaders">
+            <div class="panel-heading compact-heading">
+              <div>
+                <p class="section-kicker">CELEBRATE SUCCESS</p>
+                <h2>Top students <span class="trophy-mark">✦</span></h2>
+              </div>
+              <span class="period-pill">This term</span>
+            </div>
+            <p class="panel-subtitle">Students leading the way academically.</p>
+            <div id="leaderList" class="leader-list"></div>
+            <button class="text-button" id="viewAllLeaders">
+              View all students <i class="bi bi-arrow-right"></i>
+            </button>
+          </article>
+        </section>
+
+        <section class="panel attendance-panel" id="attendance">
+          <div class="attendance-copy">
+            <span class="attendance-icon"
+              ><i class="bi bi-calendar2-week"></i
+            ></span>
+            <div>
+              <p class="section-kicker">DAILY CHECK-IN</p>
+              <h2>Attendance snapshot</h2>
+              <p class="panel-subtitle">
+                A quick look at student attendance records.
+              </p>
+            </div>
+          </div>
+          <div class="attendance-metrics">
+            <div>
+              <strong id="presentCount">0</strong
+              ><span><i class="attendance-dot present-dot"></i> Present</span>
+            </div>
+            <div>
+              <strong id="lateCount">0</strong
+              ><span><i class="attendance-dot late-dot"></i> Late</span>
+            </div>
+            <div>
+              <strong id="absentCount">0</strong
+              ><span><i class="attendance-dot absent-dot"></i> Absent</span>
+            </div>
+          </div>
+          <div class="attendance-bar" aria-label="Attendance distribution">
+            <span id="presentBar"></span><span id="lateBar"></span
+            ><span id="absentBar"></span>
+          </div>
+        </section>
+        <footer class="app-footer">
+          <span>© 2026 StudentFlow · Northstar Academy</span
+          ><span
+            >Made for better learning <i class="bi bi-heart-fill"></i
+          ></span>
+        </footer>
+      </main>
+    </div>
+
+    <div
+      class="modal-backdrop hidden"
+      id="studentModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="section-kicker">STUDENT RECORD</p>
+            <h2 id="modalTitle">Add a student</h2>
+            <p class="panel-subtitle">
+              Fill in the details below. Fields marked * are required.
+            </p>
+          </div>
+          <button class="icon-button" id="closeModal" aria-label="Close dialog">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <form id="studentForm">
+          <input type="hidden" id="editingStudentId" />
+          <div class="form-grid">
+            <label class="form-field full-field"
+              >Full name *<input
+                id="studentName"
+                name="name"
+                required
+                maxlength="80"
+                placeholder="e.g. Taylor Johnson"
+            /></label>
+            <label class="form-field"
+              >Student ID *<input
+                id="studentId"
+                name="studentId"
+                required
+                maxlength="20"
+                placeholder="e.g. STU-204"
+            /></label>
+            <label class="form-field"
+              >Class / grade *<select
+                id="studentClass"
+                name="studentClass"
+                required
+              >
+                <option value="">Select class</option>
+                <option>Grade 8</option>
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+                <option>Grade 11</option>
+                <option>Grade 12</option>
+              </select></label
+            >
+            <label class="form-field"
+              >Email address<input
+                id="studentEmail"
+                name="email"
+                type="email"
+                maxlength="120"
+                placeholder="student@example.com"
+            /></label>
+            <label class="form-field"
+              >Attendance (%)<input
+                id="studentAttendance"
+                name="attendance"
+                type="number"
+                min="0"
+                max="100"
+                value="95"
+            /></label>
+            <label class="form-field"
+              >Previous average (%)<input
+                id="studentPrevious"
+                name="previous"
+                type="number"
+                min="0"
+                max="100"
+                value="75"
+            /></label>
+            <div class="full-field">
+              <p class="form-section-title">
+                Subject grades <span>0–100</span>
+              </p>
+              <div class="grade-input-grid">
+                <label class="form-field"
+                  >Mathematics<input
+                    id="gradeMath"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="80"
+                    required
+                /></label>
+                <label class="form-field"
+                  >Science<input
+                    id="gradeScience"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="80"
+                    required
+                /></label>
+                <label class="form-field"
+                  >English<input
+                    id="gradeEnglish"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="80"
+                    required
+                /></label>
+                <label class="form-field"
+                  >History<input
+                    id="gradeHistory"
+                    type="number"
+                    min="0"
+                    max="100"
+                    value="80"
+                    required
+                /></label>
+              </div>
+            </div>
+          </div>
+          <p class="form-error hidden" id="formError" role="alert"></p>
+          <div class="modal-actions">
+            <button type="button" class="outline-button" id="cancelModal">
+              Cancel</button
+            ><button type="submit" class="primary-button">
+              <i class="bi bi-check2"></i>
+              <span id="saveButtonText">Save student</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="modal-backdrop hidden"
+      id="detailsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="detailsTitle"
+    >
+      <div class="modal-card details-card">
+        <div class="modal-header">
+          <div>
+            <p class="section-kicker">STUDENT PROFILE</p>
+            <h2 id="detailsTitle">Student details</h2>
+          </div>
+          <button
+            class="icon-button"
+            id="closeDetails"
+            aria-label="Close details"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+        <div id="studentDetailsContent"></div>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <i class="bi bi-check-circle-fill"></i
+      ><span id="toastMessage">Saved successfully</span>
+    </div>
+  </body>
+</html>
